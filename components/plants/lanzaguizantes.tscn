@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://0agxrnccj0ys"]
+
+[ext_resource type="PackedScene" uid="uid://cx4g5eu1fn1ro" path="res://components/class/plants.tscn" id="1_cixg0"]
+[ext_resource type="Texture2D" uid="uid://cn8lm6edk3gsg" path="res://assets/img/lanzaguizantes.png" id="2_2l4f8"]
+
+[sub_resource type="Animation" id="Animation_rkapm"]
+resource_name = "IDLE"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lanzaguizantes:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2, 4, 0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_femna"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lanzaguizantes:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_w8bip"]
+resource_name = "SHOOT"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lanzaguizantes:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dxscg"]
+_data = {
+"IDLE": SubResource("Animation_rkapm"),
+"RESET": SubResource("Animation_femna"),
+"SHOOT": SubResource("Animation_w8bip")
+}
+
+[node name="plants" instance=ExtResource("1_cixg0")]
+ANIMATED_SPRITE_PATH = NodePath("ani")
+
+[node name="Lanzaguizantes" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -27)
+scale = Vector2(2.375, 2.375)
+texture = ExtResource("2_2l4f8")
+hframes = 6
+vframes = 2
+frame = 2
+
+[node name="ani" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_dxscg")
+}

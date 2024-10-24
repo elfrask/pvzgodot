@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Plants vs zombies (by Frask)"
+run/main_scene="res://components/LEVELSTATE.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[global_group]
+
+Wall=""
+Zombie=""
+Plants=""
+Bullets=""
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="plants_to_zombie_detection"
+2d_physics/layer_2="zombies_to_plants_eating"
+2d_physics/layer_3="bullet_to_zompie_shoot"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0

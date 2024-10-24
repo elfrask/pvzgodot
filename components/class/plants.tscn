@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx4g5eu1fn1ro"]
+
+[ext_resource type="Script" path="res://components/class/plants.gd" id="1_hycyt"]
+
+[node name="plants" type="CharacterBody2D" groups=["Plants"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_hycyt")
+USE_RAY_SHOOT = null
+
+[node name="ray" type="RayCast2D" parent="."]
+position = Vector2(0, -30)
+target_position = Vector2(1155, 0)

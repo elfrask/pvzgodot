@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4jrumikdmtfj"]
+
+[ext_resource type="Texture2D" uid="uid://dddiagtv8qlb7" path="res://assets/img/test.png" id="1_u0ajf"]
+
+[sub_resource type="Animation" id="Animation_3pnto"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Test:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Test:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -22)]
+}
+
+[sub_resource type="Animation" id="Animation_l38qx"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Test:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Test:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -22), Vector2(-2, -22), Vector2(5, -22), Vector2(8, -22)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bxc63"]
+_data = {
+"RESET": SubResource("Animation_3pnto"),
+"idle": SubResource("Animation_l38qx")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Test" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2, -22)
+scale = Vector2(1.0122, 1)
+texture = ExtResource("1_u0ajf")
+hframes = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bxc63")
+}

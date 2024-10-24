@@ -1,0 +1,300 @@
+[gd_scene load_steps=4 format=3 uid="uid://b84ogenya4ldk"]
+
+[ext_resource type="Texture2D" uid="uid://c13aqbiuti6ve" path="res://assets/img/bg/level_game.png" id="1_8huvk"]
+[ext_resource type="PackedScene" uid="uid://cv41bmlkr3oif" path="res://components/celda.tscn" id="2_nciep"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kidpt"]
+size = Vector2(116, 694)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="LevelGame" type="Sprite2D" parent="."]
+position = Vector2(760.833, 323.5)
+scale = Vector2(1.08833, 1.08833)
+texture = ExtResource("1_8huvk")
+metadata/_edit_lock_ = true
+
+[node name="celdas" type="Node2D" parent="."]
+
+[node name="Node2D" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 316.0
+offset_top = 138.0
+offset_right = 316.0
+offset_bottom = 138.0
+
+[node name="Node2D2" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 315.0
+offset_top = 241.0
+offset_right = 315.0
+offset_bottom = 241.0
+
+[node name="Node2D3" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 316.0
+offset_top = 350.0
+offset_right = 316.0
+offset_bottom = 350.0
+
+[node name="Node2D4" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 316.0
+offset_top = 454.0
+offset_right = 316.0
+offset_bottom = 454.0
+
+[node name="Node2D5" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 316.0
+offset_top = 559.0
+offset_right = 316.0
+offset_bottom = 559.0
+
+[node name="Node2D6" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 405.0
+offset_top = 138.0
+offset_right = 405.0
+offset_bottom = 138.0
+
+[node name="Node2D7" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 405.0
+offset_top = 241.0
+offset_right = 405.0
+offset_bottom = 241.0
+
+[node name="Node2D8" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 405.0
+offset_top = 350.0
+offset_right = 405.0
+offset_bottom = 350.0
+
+[node name="Node2D9" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 405.0
+offset_top = 454.0
+offset_right = 405.0
+offset_bottom = 454.0
+
+[node name="Node2D10" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 405.0
+offset_top = 559.0
+offset_right = 405.0
+offset_bottom = 559.0
+
+[node name="Node2D11" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 491.0
+offset_top = 138.0
+offset_right = 491.0
+offset_bottom = 138.0
+
+[node name="Node2D12" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 491.0
+offset_top = 241.0
+offset_right = 491.0
+offset_bottom = 241.0
+
+[node name="Node2D13" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 491.0
+offset_top = 350.0
+offset_right = 491.0
+offset_bottom = 350.0
+
+[node name="Node2D14" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 491.0
+offset_top = 454.0
+offset_right = 491.0
+offset_bottom = 454.0
+
+[node name="Node2D15" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 491.0
+offset_top = 559.0
+offset_right = 491.0
+offset_bottom = 559.0
+
+[node name="Node2D16" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 580.0
+offset_top = 138.0
+offset_right = 580.0
+offset_bottom = 138.0
+
+[node name="Node2D17" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 580.0
+offset_top = 241.0
+offset_right = 580.0
+offset_bottom = 241.0
+
+[node name="Node2D18" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 580.0
+offset_top = 350.0
+offset_right = 580.0
+offset_bottom = 350.0
+
+[node name="Node2D19" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 580.0
+offset_top = 454.0
+offset_right = 580.0
+offset_bottom = 454.0
+
+[node name="Node2D20" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 580.0
+offset_top = 559.0
+offset_right = 580.0
+offset_bottom = 559.0
+
+[node name="Node2D21" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 671.0
+offset_top = 138.0
+offset_right = 671.0
+offset_bottom = 138.0
+
+[node name="Node2D22" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 671.0
+offset_top = 241.0
+offset_right = 671.0
+offset_bottom = 241.0
+
+[node name="Node2D23" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 671.0
+offset_top = 350.0
+offset_right = 671.0
+offset_bottom = 350.0
+
+[node name="Node2D24" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 671.0
+offset_top = 454.0
+offset_right = 671.0
+offset_bottom = 454.0
+
+[node name="Node2D25" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 671.0
+offset_top = 559.0
+offset_right = 671.0
+offset_bottom = 559.0
+
+[node name="Node2D26" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 760.0
+offset_top = 138.0
+offset_right = 760.0
+offset_bottom = 138.0
+
+[node name="Node2D27" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 760.0
+offset_top = 241.0
+offset_right = 760.0
+offset_bottom = 241.0
+
+[node name="Node2D28" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 760.0
+offset_top = 350.0
+offset_right = 760.0
+offset_bottom = 350.0
+
+[node name="Node2D29" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 760.0
+offset_top = 454.0
+offset_right = 760.0
+offset_bottom = 454.0
+
+[node name="Node2D30" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 760.0
+offset_top = 559.0
+offset_right = 760.0
+offset_bottom = 559.0
+
+[node name="Node2D31" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 846.0
+offset_top = 138.0
+offset_right = 846.0
+offset_bottom = 138.0
+
+[node name="Node2D32" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 846.0
+offset_top = 241.0
+offset_right = 846.0
+offset_bottom = 241.0
+
+[node name="Node2D33" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 846.0
+offset_top = 350.0
+offset_right = 846.0
+offset_bottom = 350.0
+
+[node name="Node2D34" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 846.0
+offset_top = 454.0
+offset_right = 846.0
+offset_bottom = 454.0
+
+[node name="Node2D35" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 846.0
+offset_top = 559.0
+offset_right = 846.0
+offset_bottom = 559.0
+
+[node name="Node2D36" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 935.0
+offset_top = 138.0
+offset_right = 935.0
+offset_bottom = 138.0
+
+[node name="Node2D37" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 935.0
+offset_top = 241.0
+offset_right = 935.0
+offset_bottom = 241.0
+
+[node name="Node2D38" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 935.0
+offset_top = 350.0
+offset_right = 935.0
+offset_bottom = 350.0
+
+[node name="Node2D39" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 935.0
+offset_top = 454.0
+offset_right = 935.0
+offset_bottom = 454.0
+
+[node name="Node2D40" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 935.0
+offset_top = 559.0
+offset_right = 935.0
+offset_bottom = 559.0
+
+[node name="Node2D41" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 1022.0
+offset_top = 138.0
+offset_right = 1022.0
+offset_bottom = 138.0
+
+[node name="Node2D42" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 1022.0
+offset_top = 241.0
+offset_right = 1022.0
+offset_bottom = 241.0
+
+[node name="Node2D43" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 1022.0
+offset_top = 350.0
+offset_right = 1022.0
+offset_bottom = 350.0
+
+[node name="Node2D44" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 1022.0
+offset_top = 454.0
+offset_right = 1022.0
+offset_bottom = 454.0
+
+[node name="Node2D45" parent="celdas" instance=ExtResource("2_nciep")]
+offset_left = 1022.0
+offset_top = 559.0
+offset_right = 1022.0
+offset_bottom = 559.0
+
+[node name="plants" type="Node2D" parent="."]
+
+[node name="world_elements" type="Node2D" parent="."]
+
+[node name="wall" type="StaticBody2D" parent="world_elements"]
+position = Vector2(1211, 337)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world_elements/wall"]
+shape = SubResource("RectangleShape2D_kidpt")
+debug_color = Color(1, 0, 0.145098, 0.235294)
+metadata/_edit_lock_ = true

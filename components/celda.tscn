@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv41bmlkr3oif"]
+
+[ext_resource type="Script" path="res://components/celda.gd" id="1_aqndm"]
+[ext_resource type="Texture2D" uid="uid://bmvggje015tn5" path="res://assets/img/gui/cursor.png" id="1_xt6is"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_aqndm")
+
+[node name="touch" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -38.0
+offset_top = -38.0
+offset_right = 37.0
+offset_bottom = 37.0
+texture_hover = ExtResource("1_xt6is")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="spawn" type="Marker2D" parent="."]
+position = Vector2(0, 33)
+
+[node name="spawnPoint" type="Node2D" parent="."]
+position = Vector2(0, 33)
+
+[connection signal="mouse_entered" from="touch" to="." method="_on_touch_mouse_entered"]
+[connection signal="pressed" from="touch" to="." method="_on_touch_pressed"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctgfa821006yn"]
+
+[ext_resource type="Script" path="res://components/class/zombie.gd" id="1_4fswg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mht3v"]
+size = Vector2(36, 36)
+
+[node name="Zombie" type="CharacterBody2D" groups=["Zombie"]]
+script = ExtResource("1_4fswg")
+
+[node name="coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mht3v")
+debug_color = Color(0, 0.643137, 0.321569, 0.572549)
