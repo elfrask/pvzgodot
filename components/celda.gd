@@ -24,6 +24,7 @@ func _on_touch_pressed() -> void:
 	if not PLANT: 
 		var inst:Plants = lanzaguizantes.instantiate()
 		spawnPoint.add_child(inst)
+		inst.CELDA = self
 		PLANT = true
 	
 	#Plants.global_position = pos

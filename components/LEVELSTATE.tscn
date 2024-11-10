@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b84ogenya4ldk"]
+[gd_scene load_steps=6 format=3 uid="uid://b84ogenya4ldk"]
 
 [ext_resource type="Texture2D" uid="uid://c13aqbiuti6ve" path="res://assets/img/bg/level_game.png" id="1_8huvk"]
+[ext_resource type="Script" path="res://components/levelstate.gd" id="1_v0p3y"]
 [ext_resource type="PackedScene" uid="uid://cv41bmlkr3oif" path="res://components/celda.tscn" id="2_nciep"]
+[ext_resource type="PackedScene" uid="uid://djfldwuqbmuea" path="res://components/zombies/zombie.tscn" id="3_3ndii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kidpt"]
 size = Vector2(116, 694)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_v0p3y")
 
 [node name="LevelGame" type="Sprite2D" parent="."]
 position = Vector2(760.833, 323.5)
@@ -290,7 +293,7 @@ offset_bottom = 559.0
 
 [node name="world_elements" type="Node2D" parent="."]
 
-[node name="wall" type="StaticBody2D" parent="world_elements"]
+[node name="wall" type="Area2D" parent="world_elements"]
 position = Vector2(1211, 337)
 metadata/_edit_lock_ = true
 
@@ -298,3 +301,12 @@ metadata/_edit_lock_ = true
 shape = SubResource("RectangleShape2D_kidpt")
 debug_color = Color(1, 0, 0.145098, 0.235294)
 metadata/_edit_lock_ = true
+
+[node name="enemyes" type="Node2D" parent="."]
+
+[node name="Zombie" parent="enemyes" instance=ExtResource("3_3ndii")]
+position = Vector2(1131, 393)
+velocity = Vector2(-40.1723, 0)
+
+[node name="drops" type="Node2D" parent="."]
+unique_name_in_owner = true

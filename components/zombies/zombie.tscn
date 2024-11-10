@@ -1,0 +1,138 @@
+[gd_scene load_steps=10 format=3 uid="uid://djfldwuqbmuea"]
+
+[ext_resource type="PackedScene" uid="uid://ctgfa821006yn" path="res://components/class/zombie.tscn" id="1_c3uo2"]
+[ext_resource type="Texture2D" uid="uid://bcafc3qptjbrl" path="res://assets/img/zombies/zombie.png" id="2_emwcy"]
+
+[sub_resource type="Animation" id="Animation_goc5o"]
+resource_name = "ATK"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [27, 33]
+}
+
+[sub_resource type="Animation" id="Animation_8ui7x"]
+resource_name = "DIE"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [18, 26]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7iq4u"]
+resource_name = "IDLE"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
+
+[sub_resource type="Animation" id="Animation_5fggv"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e7ejn"]
+resource_name = "WALK"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [9, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7wg4"]
+_data = {
+"ATK": SubResource("Animation_goc5o"),
+"DIE": SubResource("Animation_8ui7x"),
+"IDLE": SubResource("Animation_7iq4u"),
+"RESET": SubResource("Animation_5fggv"),
+"WALK": SubResource("Animation_e7ejn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71onr"]
+size = Vector2(40, 65)
+
+[node name="Zombie" instance=ExtResource("1_c3uo2")]
+velocity = Vector2(-16.6667, 0)
+AniPath = NodePath("ani")
+RayDetectionPath = NodePath("RayCast2D")
+
+[node name="spr" type="Sprite2D" parent="." index="0"]
+position = Vector2(-14, -62.2663)
+scale = Vector2(2.55556, 2.61708)
+texture = ExtResource("2_emwcy")
+offset = Vector2(7.62939e-06, 0)
+hframes = 9
+vframes = 5
+
+[node name="ani" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_x7wg4")
+}
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="2"]
+position = Vector2(0, -31)
+target_position = Vector2(-48, 1)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -31.5)
+shape = SubResource("RectangleShape2D_71onr")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ip650o4jtjx"]
+
+[ext_resource type="Script" path="res://components/class/drop.gd" id="1_e5k7k"]
+
+[node name="drop" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_e5k7k")

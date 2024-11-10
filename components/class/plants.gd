@@ -1,5 +1,5 @@
 @icon("./plant_icon.png")
-@tool
+#@tool
 extends CharacterBody2D
 class_name Plants
 
@@ -7,13 +7,25 @@ class_name Plants
 
 
 @export_node_path("AnimationPlayer") var ANIMATED_SPRITE_PATH:NodePath
+@export_node_path("Marker2D") var SHOOT_SPAWN_PATH:NodePath
+@export var DropOrBullet: PackedScene
+@export var Price = 100
 @export var Healt = 300
 @export var DAMAGE:int = 100
 @export var USE_RAY_SHOOT: bool = true
 #@export var s = 0
 #@export var ANIMATED_SPRITE_PATH:NodePath
-
+var CELDA: celda = null
 @onready var RAY = $ray
+
+func hit(damge: int):
+	Healt -= damge
+	print("daño")
+	if Healt < 1:
+		if CELDA:
+			CELDA.PLANT = false
+		queue_free()
+	pass
 
 func _ready() -> void:
 	var ani:AnimationPlayer = get_node(ANIMATED_SPRITE_PATH)
@@ -25,7 +37,17 @@ func shoot():
 	
 	pass
 
-func _physics_process(delta: float) -> void:
+func drop():
+	var SpawnDrop:Marker2D = get_node(SHOOT_SPAWN_PATH)
+	var _drop:Drop = DropOrBullet.instantiate()
+	var gt:Node2D = Game.req("drops")
+	
+	gt.add_child(_drop)
+	_drop.global_position = SpawnDrop.global_position
+	_drop.DAMAGE = DAMAGE
+	pass
+
+func _process(delta: float) -> void:
 	
 	var ani:AnimationPlayer = get_node(ANIMATED_SPRITE_PATH)
 	

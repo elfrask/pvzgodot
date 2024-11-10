@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://0agxrnccj0ys"]
+[gd_scene load_steps=9 format=3 uid="uid://0agxrnccj0ys"]
 
 [ext_resource type="PackedScene" uid="uid://cx4g5eu1fn1ro" path="res://components/class/plants.tscn" id="1_cixg0"]
 [ext_resource type="Texture2D" uid="uid://cn8lm6edk3gsg" path="res://assets/img/lanzaguizantes.png" id="2_2l4f8"]
+[ext_resource type="PackedScene" uid="uid://bjnqsufgf3dss" path="res://components/drops/lanzaguizantes_drop_bullet.tscn" id="2_drm2l"]
 
 [sub_resource type="Animation" id="Animation_rkapm"]
 resource_name = "IDLE"
@@ -50,6 +51,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [6, 7, 8, 6]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"drop"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxscg"]
 _data = {
@@ -58,8 +73,12 @@ _data = {
 "SHOOT": SubResource("Animation_w8bip")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kw8r5"]
+size = Vector2(32, 70)
+
 [node name="plants" instance=ExtResource("1_cixg0")]
 ANIMATED_SPRITE_PATH = NodePath("ani")
+DropOrBullet = ExtResource("2_drm2l")
 
 [node name="Lanzaguizantes" type="Sprite2D" parent="." index="1"]
 position = Vector2(0, -27)
@@ -73,3 +92,10 @@ frame = 2
 libraries = {
 "": SubResource("AnimationLibrary_dxscg")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-1, -25)
+shape = SubResource("RectangleShape2D_kw8r5")
+
+[node name="spawn_shoot" parent="." index="4"]
+position = Vector2(19, -43)
