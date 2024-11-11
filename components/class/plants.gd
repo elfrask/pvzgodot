@@ -4,8 +4,6 @@ extends CharacterBody2D
 class_name Plants
 
 
-
-
 @export_node_path("AnimationPlayer") var ANIMATED_SPRITE_PATH:NodePath
 @export_node_path("Marker2D") var SHOOT_SPAWN_PATH:NodePath
 @export var DropOrBullet: PackedScene
@@ -45,6 +43,7 @@ func drop():
 	gt.add_child(_drop)
 	_drop.global_position = SpawnDrop.global_position
 	_drop.DAMAGE = DAMAGE
+	
 	pass
 
 func _process(delta: float) -> void:

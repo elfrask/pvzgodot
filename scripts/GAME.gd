@@ -2,6 +2,13 @@ extends Node
 
 var globals = {}
 
+var SUNS = 100
+
+func RESET_ROOM():
+	SUNS = 100
+	
+	pass
+
 func add(key: String, obj: Node):
 	globals[key] = obj
 

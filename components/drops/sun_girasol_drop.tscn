@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://konbg8fgu528"]
+
+[ext_resource type="Script" path="res://components/drops/sun_girasol_drop.gd" id="1_j8jkx"]
+[ext_resource type="PackedScene" uid="uid://b54t2rhpaf65k" path="res://components/drops/sun.tscn" id="2_fqpkn"]
+
+[sub_resource type="Animation" id="Animation_yvquu"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ln8pu"]
+resource_name = "IDLE"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sun:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -60), Vector2(0, 87)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mi8la"]
+_data = {
+"IDLE": SubResource("Animation_ln8pu"),
+"RESET": SubResource("Animation_yvquu")
+}
+
+[node name="sun_girasol_drop" type="CharacterBody2D"]
+script = ExtResource("1_j8jkx")
+
+[node name="sun" parent="." instance=ExtResource("2_fqpkn")]
+
+[node name="ani" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mi8la")
+}
+
+[connection signal="on_take" from="sun" to="." method="_on_sun_on_take"]

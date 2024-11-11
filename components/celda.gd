@@ -5,7 +5,8 @@ class_name celda
 @onready var spawn:Marker2D = $spawn
 @onready var spawnPoint:Node2D = $spawnPoint
 
-var lanzaguizantes: PackedScene = preload("res://components/plants/lanzaguizantes.tscn")
+#var lanzaguizantes: PackedScene = preload("res://components/plants/lanzaguizantes.tscn")
+var lanzaguizantes: PackedScene = preload("res://components/plants/girasol.tscn")
 var PLANT = false
 
 # Called when the node enters the scene tree for the first time.

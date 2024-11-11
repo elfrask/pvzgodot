@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl0vgphunwlvw"]
+
+[ext_resource type="PackedScene" uid="uid://cx4g5eu1fn1ro" path="res://components/class/plants.tscn" id="1_pfcx8"]
+[ext_resource type="Texture2D" uid="uid://evbqvqdiyu4q" path="res://assets/img/plants/girasol.png" id="2_5436q"]
+[ext_resource type="PackedScene" uid="uid://konbg8fgu528" path="res://components/drops/sun_girasol_drop.tscn" id="2_utc8x"]
+
+[sub_resource type="Animation" id="Animation_wxfge"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_1ylnp"]
+resource_name = "IDLE"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2, 0, 5, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t3g0f"]
+_data = {
+"IDLE": SubResource("Animation_1ylnp"),
+"RESET": SubResource("Animation_wxfge")
+}
+
+[sub_resource type="GDScript" id="GDScript_2ndth"]
+resource_name = "jiji"
+script/source = "extends Timer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_timeout() -> void:
+	start(0)
+	$\"..\".drop()
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbv1n"]
+size = Vector2(30, 46)
+
+[node name="plants" instance=ExtResource("1_pfcx8")]
+ANIMATED_SPRITE_PATH = NodePath("ani")
+DropOrBullet = ExtResource("2_utc8x")
+Price = 50
+USE_RAY_SHOOT = false
+
+[node name="spr" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -29)
+scale = Vector2(2, 2)
+texture = ExtResource("2_5436q")
+hframes = 6
+frame = 2
+
+[node name="spawn_shoot" parent="." index="2"]
+position = Vector2(0, -48)
+
+[node name="ani" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_t3g0f")
+}
+
+[node name="Timer" type="Timer" parent="." index="4"]
+wait_time = 5.0
+autostart = true
+script = SubResource("GDScript_2ndth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_vbv1n")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
