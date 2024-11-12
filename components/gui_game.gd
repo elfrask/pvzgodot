@@ -1,13 +1,17 @@
-extends Node2D
+extends Control
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$ani.play("IDLE")
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+	$header/sun_counter/suns.text = str(Game.SUNS)
 	pass
+
+
+func _on_mazo_on_change(Scene: PackedScene) -> void:
+	Game.PLANT = Scene
+	pass # Replace with function body.

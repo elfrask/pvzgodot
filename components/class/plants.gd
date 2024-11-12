@@ -6,6 +6,7 @@ class_name Plants
 
 @export_node_path("AnimationPlayer") var ANIMATED_SPRITE_PATH:NodePath
 @export_node_path("Marker2D") var SHOOT_SPAWN_PATH:NodePath
+@export var icon:Texture
 @export var DropOrBullet: PackedScene
 @export var Price = 100
 @export var Healt = 300

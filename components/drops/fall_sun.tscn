@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://nsiwy7xxje42"]
+
+[ext_resource type="Script" path="res://components/drops/fall_sun.gd" id="1_pho6x"]
+[ext_resource type="PackedScene" uid="uid://b54t2rhpaf65k" path="res://components/drops/sun.tscn" id="2_bw06v"]
+
+[node name="fall_sun" type="CharacterBody2D"]
+script = ExtResource("1_pho6x")
+
+[node name="sun" parent="." instance=ExtResource("2_bw06v")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="on_take" from="sun" to="." method="_on_sun_on_take"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

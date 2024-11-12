@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://hwsbofwdscq8"]
+
+[ext_resource type="Script" path="res://components/micgui/cards.gd" id="1_84f32"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq2wx"]
+bg_color = Color(0.376041, 0.138446, 2.40654e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no2pk"]
+bg_color = Color(0.376471, 0.137255, 0, 1)
+border_width_left = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8182, 0.797927, 0, 1)
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 3
+anchor_right = 0.0603194
+anchor_bottom = 0.134
+offset_right = 0.511993
+offset_bottom = 0.167999
+script = ExtResource("1_84f32")
+metadata/_edit_use_anchors_ = true
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0, 1)
+
+[node name="bt" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -39.5
+offset_right = 31.0
+offset_bottom = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lq2wx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_no2pk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lq2wx")
+
+[node name="Label" type="Label" parent="bt"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 19
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon" type="TextureRect" parent="bt"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 56.0
+offset_bottom = 55.0
+expand_mode = 1
+
+[connection signal="pressed" from="bt" to="." method="_on_texture_rect_pressed"]

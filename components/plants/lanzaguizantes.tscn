@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://0agxrnccj0ys"]
+[gd_scene load_steps=10 format=3 uid="uid://0agxrnccj0ys"]
 
 [ext_resource type="PackedScene" uid="uid://cx4g5eu1fn1ro" path="res://components/class/plants.tscn" id="1_cixg0"]
 [ext_resource type="Texture2D" uid="uid://cn8lm6edk3gsg" path="res://assets/img/lanzaguizantes.png" id="2_2l4f8"]
 [ext_resource type="PackedScene" uid="uid://bjnqsufgf3dss" path="res://components/drops/lanzaguizantes_drop_bullet.tscn" id="2_drm2l"]
+[ext_resource type="Texture2D" uid="uid://cq4f4en1cwb6p" path="res://assets/img/plants/icon/lanzaguizantes.png" id="2_p0gnf"]
 
 [sub_resource type="Animation" id="Animation_rkapm"]
 resource_name = "IDLE"
@@ -78,11 +79,12 @@ size = Vector2(32, 70)
 
 [node name="plants" instance=ExtResource("1_cixg0")]
 ANIMATED_SPRITE_PATH = NodePath("ani")
+icon = ExtResource("2_p0gnf")
 DropOrBullet = ExtResource("2_drm2l")
 
 [node name="Lanzaguizantes" type="Sprite2D" parent="." index="1"]
 position = Vector2(0, -27)
-scale = Vector2(2.375, 2.375)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_2l4f8")
 hframes = 6
 vframes = 2

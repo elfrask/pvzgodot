@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://bltu61h2emla2"]
+
+[ext_resource type="Texture2D" uid="uid://djqf27tibl1bc" path="res://assets/img/drops/sun.png" id="1_nun42"]
+[ext_resource type="Script" path="res://components/gui_game.gd" id="1_tkwuy"]
+[ext_resource type="PackedScene" uid="uid://hwsbofwdscq8" path="res://components/micgui/cards.tscn" id="2_6s6oy"]
+[ext_resource type="Script" path="res://components/micgui/mazo.gd" id="2_n2vul"]
+[ext_resource type="PackedScene" uid="uid://0agxrnccj0ys" path="res://components/plants/lanzaguizantes.tscn" id="4_1ka7t"]
+[ext_resource type="PackedScene" uid="uid://dl0vgphunwlvw" path="res://components/plants/girasol.tscn" id="4_phj6s"]
+[ext_resource type="PackedScene" uid="uid://ivxs3q01sgdk" path="res://components/plants/nuez.tscn" id="6_otdgi"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tkwuy")
+metadata/_edit_lock_ = true
+
+[node name="header" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 91.0
+grow_horizontal = 2
+
+[node name="sun_counter" type="Control" parent="header"]
+layout_mode = 1
+anchor_right = 0.13
+anchor_bottom = 1.0
+offset_right = 0.23999
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="suns" type="Label" parent="header/sun_counter"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 20.0
+offset_right = 142.0
+offset_bottom = 56.0
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 24
+text = "100
+"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="header/sun_counter"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 13.0
+offset_right = 69.0
+offset_bottom = 64.0
+texture = ExtResource("1_nun42")
+metadata/_edit_lock_ = true
+
+[node name="table" type="Control" parent="header"]
+layout_mode = 1
+anchor_left = 0.13
+anchor_right = 0.876
+anchor_bottom = 1.0
+offset_left = 0.23999
+offset_right = -0.152039
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Mazo" type="HBoxContainer" parent="header/table"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_n2vul")
+
+[node name="Card" parent="header/table/Mazo" instance=ExtResource("2_6s6oy")]
+layout_mode = 2
+Scene = ExtResource("4_1ka7t")
+
+[node name="Card2" parent="header/table/Mazo" instance=ExtResource("2_6s6oy")]
+layout_mode = 2
+Scene = ExtResource("4_phj6s")
+
+[node name="Card3" parent="header/table/Mazo" instance=ExtResource("2_6s6oy")]
+layout_mode = 2
+Scene = ExtResource("6_otdgi")
+
+[connection signal="on_change" from="header/table/Mazo" to="." method="_on_mazo_on_change"]

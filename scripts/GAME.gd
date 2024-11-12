@@ -3,10 +3,11 @@ extends Node
 var globals = {}
 
 var SUNS = 100
+var PLANT:PackedScene = load("res://components/plants/lanzaguizantes.tscn")
 
 func RESET_ROOM():
 	SUNS = 100
-	
+	PLANT = load("res://components/plants/lanzaguizantes.tscn")
 	pass
 
 func add(key: String, obj: Node):

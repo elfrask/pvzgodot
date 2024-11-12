@@ -1,23 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl0vgphunwlvw"]
+[gd_scene load_steps=10 format=3 uid="uid://dl0vgphunwlvw"]
 
 [ext_resource type="PackedScene" uid="uid://cx4g5eu1fn1ro" path="res://components/class/plants.tscn" id="1_pfcx8"]
 [ext_resource type="Texture2D" uid="uid://evbqvqdiyu4q" path="res://assets/img/plants/girasol.png" id="2_5436q"]
+[ext_resource type="Texture2D" uid="uid://bdcyn6buue57o" path="res://assets/img/plants/icon/girasol.png" id="2_ty1v7"]
 [ext_resource type="PackedScene" uid="uid://konbg8fgu528" path="res://components/drops/sun_girasol_drop.tscn" id="2_utc8x"]
-
-[sub_resource type="Animation" id="Animation_wxfge"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("spr:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
 
 [sub_resource type="Animation" id="Animation_1ylnp"]
 resource_name = "IDLE"
@@ -35,6 +21,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [2, 0, 5, 2]
+}
+
+[sub_resource type="Animation" id="Animation_wxfge"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t3g0f"]
@@ -65,17 +66,18 @@ func _on_timeout() -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbv1n"]
-size = Vector2(30, 46)
+size = Vector2(44, 69)
 
 [node name="plants" instance=ExtResource("1_pfcx8")]
 ANIMATED_SPRITE_PATH = NodePath("ani")
+icon = ExtResource("2_ty1v7")
 DropOrBullet = ExtResource("2_utc8x")
 Price = 50
 USE_RAY_SHOOT = false
 
 [node name="spr" type="Sprite2D" parent="." index="0"]
-position = Vector2(0, -29)
-scale = Vector2(2, 2)
+position = Vector2(1, -36)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_5436q")
 hframes = 6
 frame = 2
@@ -89,12 +91,12 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="." index="4"]
-wait_time = 5.0
+wait_time = 15.0
 autostart = true
 script = SubResource("GDScript_2ndth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
-position = Vector2(0, -24)
+position = Vector2(0, -35.5)
 shape = SubResource("RectangleShape2D_vbv1n")
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

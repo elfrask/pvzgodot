@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://ivxs3q01sgdk"]
+
+[ext_resource type="PackedScene" uid="uid://cx4g5eu1fn1ro" path="res://components/class/plants.tscn" id="1_68g40"]
+[ext_resource type="Texture2D" uid="uid://dxcqv5im1vepr" path="res://assets/img/plants/nut.png" id="2_n3gcg"]
+[ext_resource type="Texture2D" uid="uid://cgo3jnuc43pry" path="res://assets/img/plants/icon/nuez.png" id="2_s83q2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnss3"]
+size = Vector2(46, 71)
+
+[sub_resource type="Animation" id="Animation_peku6"]
+resource_name = "IDLE"
+length = 1.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
+
+[sub_resource type="Animation" id="Animation_risy5"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t2bhh"]
+_data = {
+"IDLE": SubResource("Animation_peku6"),
+"RESET": SubResource("Animation_risy5")
+}
+
+[node name="plants" instance=ExtResource("1_68g40")]
+ANIMATED_SPRITE_PATH = NodePath("ani")
+icon = ExtResource("2_s83q2")
+Healt = 1500
+DAMAGE = 0
+USE_RAY_SHOOT = false
+
+[node name="spr" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -37)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_n3gcg")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -35.5)
+shape = SubResource("RectangleShape2D_nnss3")
+
+[node name="ani" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_t2bhh")
+}

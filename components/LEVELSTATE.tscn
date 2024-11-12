@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b84ogenya4ldk"]
+[gd_scene load_steps=7 format=3 uid="uid://b84ogenya4ldk"]
 
 [ext_resource type="Texture2D" uid="uid://c13aqbiuti6ve" path="res://assets/img/bg/level_game.png" id="1_8huvk"]
 [ext_resource type="Script" path="res://components/levelstate.gd" id="1_v0p3y"]
 [ext_resource type="PackedScene" uid="uid://cv41bmlkr3oif" path="res://components/celda.tscn" id="2_nciep"]
 [ext_resource type="PackedScene" uid="uid://djfldwuqbmuea" path="res://components/zombies/zombie.tscn" id="3_3ndii"]
+[ext_resource type="PackedScene" uid="uid://bltu61h2emla2" path="res://components/gui_game.tscn" id="5_7odub"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kidpt"]
 size = Vector2(116, 694)
@@ -16,6 +17,17 @@ position = Vector2(760.833, 323.5)
 scale = Vector2(1.08833, 1.08833)
 texture = ExtResource("1_8huvk")
 metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 650.0
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="GUI" parent="Control" instance=ExtResource("5_7odub")]
+layout_mode = 1
 
 [node name="celdas" type="Node2D" parent="."]
 
@@ -310,3 +322,17 @@ velocity = Vector2(-40.1723, 0)
 
 [node name="drops" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="suns_fall" type="Node2D" parent="."]
+
+[node name="start" type="Marker2D" parent="suns_fall"]
+position = Vector2(277, -94)
+
+[node name="end" type="Marker2D" parent="suns_fall"]
+position = Vector2(1054, -94)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfnwasoxfpa1y"]
+
+[ext_resource type="Script" path="res://components/micgui/mazo.gd" id="1_aau13"]
+
+[node name="mazo" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_aau13")
