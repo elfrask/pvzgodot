@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch8tnvvjiii1e"]
+
+[ext_resource type="Script" path="res://components/mics/zombie_spawner.gd" id="1_ioele"]
+
+[node name="ZombieSpawner" type="Marker2D"]
+script = ExtResource("1_ioele")

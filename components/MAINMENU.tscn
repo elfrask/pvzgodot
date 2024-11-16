@@ -1,0 +1,173 @@
+[gd_scene load_steps=11 format=3 uid="uid://4qj3lcta8ggs"]
+
+[ext_resource type="Texture2D" uid="uid://c13aqbiuti6ve" path="res://assets/img/bg/level_game.png" id="1_bm6ui"]
+[ext_resource type="Script" path="res://components/mainmenu.gd" id="1_sh04w"]
+[ext_resource type="AudioStream" uid="uid://c6hyuah4iwquv" path="res://assets/ost/menu.ogg" id="3_dhy88"]
+[ext_resource type="PackedScene" uid="uid://djfldwuqbmuea" path="res://components/zombies/zombie.tscn" id="3_lu6c5"]
+
+[sub_resource type="Animation" id="Animation_gwey7"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 376)]
+}
+
+[sub_resource type="Animation" id="Animation_qq43w"]
+resource_name = "play"
+length = 9.0
+step = 0.1
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 5, 7, 9),
+"transitions": PackedFloat32Array(1, 1, 1e-05, 1, 1),
+"update": 2,
+"values": [Vector2(576, 376), Vector2(576, 376), Vector2(946.225, 364), Vector2(946.225, 364), Vector2(568, 386)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ha2fb"]
+_data = {
+"RESET": SubResource("Animation_gwey7"),
+"play": SubResource("Animation_qq43w")
+}
+
+[sub_resource type="Animation" id="Animation_kti87"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0u5gs"]
+resource_name = "IDLE"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/Label:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.65098)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0wc5c"]
+_data = {
+"IDLE": SubResource("Animation_0u5gs"),
+"RESET": SubResource("Animation_kti87")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sh04w")
+
+[node name="LevelGame" type="Sprite2D" parent="."]
+position = Vector2(760.833, 323.5)
+scale = Vector2(1.08833, 1.08833)
+texture = ExtResource("1_bm6ui")
+metadata/_edit_lock_ = true
+
+[node name="zombies" type="Node2D" parent="."]
+
+[node name="Zombie" parent="zombies" instance=ExtResource("3_lu6c5")]
+position = Vector2(1220, 262)
+silent = true
+only_idle = true
+
+[node name="Zombie2" parent="zombies" instance=ExtResource("3_lu6c5")]
+position = Vector2(1372, 412)
+silent = true
+only_idle = true
+
+[node name="Zombie3" parent="zombies" instance=ExtResource("3_lu6c5")]
+position = Vector2(1272, 568)
+Type = 1
+silent = true
+only_idle = true
+
+[node name="Zombie4" parent="zombies" instance=ExtResource("3_lu6c5")]
+position = Vector2(1354, 568)
+Type = 2
+silent = true
+only_idle = true
+
+[node name="Zombie5" parent="zombies" instance=ExtResource("3_lu6c5")]
+position = Vector2(1254, 424)
+silent = true
+only_idle = true
+
+[node name="Zombie6" parent="zombies" instance=ExtResource("3_lu6c5")]
+position = Vector2(1336, 248)
+Type = 1
+silent = true
+only_idle = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 1
+scroll_base_scale = Vector2(0, 0)
+
+[node name="Label" type="Label" parent="ParallaxBackground"]
+z_index = 2
+offset_left = 336.0
+offset_top = 506.0
+offset_right = 893.0
+offset_bottom = 573.0
+theme_override_font_sizes/font_size = 48
+text = "CLICKEA PARA EMPEZAR"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 376)
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+
+[node name="oneani" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ha2fb")
+}
+
+[node name="ani" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0wc5c")
+}
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dhy88")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 590.0
+offset_right = 532.0
+offset_bottom = 613.0
+text = "Plants vs Zombies in godot made by Frask"

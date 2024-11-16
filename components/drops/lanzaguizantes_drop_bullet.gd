@@ -13,12 +13,19 @@ func _physics_process(delta: float) -> void:
 		if R_G.is_in_group("Zombie"):
 			if R_G is Zombie:
 				R_G.hit(DAMAGE)
-				queue_free()
+				$CollisionShape2D.disabled = true
+				visible = false
+				$impact.play()
 	
 
 	move_and_slide()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+	pass # Replace with function body.
+
+
+func _on_impact_finished() -> void:
 	queue_free()
 	pass # Replace with function body.

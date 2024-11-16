@@ -1,11 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://djfldwuqbmuea"]
+[gd_scene load_steps=14 format=3 uid="uid://djfldwuqbmuea"]
 
 [ext_resource type="PackedScene" uid="uid://ctgfa821006yn" path="res://components/class/zombie.tscn" id="1_c3uo2"]
+[ext_resource type="Script" path="res://components/zombies/zombie.gd" id="2_bfjqn"]
 [ext_resource type="Texture2D" uid="uid://bcafc3qptjbrl" path="res://assets/img/zombies/zombie.png" id="2_emwcy"]
+[ext_resource type="AudioStream" uid="uid://b5fbsn5sok3t8" path="res://assets/sound/zombies/eat.ogg" id="4_oxmtj"]
+[ext_resource type="AudioStream" uid="uid://dof6g85y326mp" path="res://assets/sound/zombies/zombie1.wav" id="5_rxy6v"]
+[ext_resource type="AudioStream" uid="uid://d1sjr7agb2g8a" path="res://assets/sound/zombies/zombie2.wav" id="6_clx2m"]
 
 [sub_resource type="Animation" id="Animation_goc5o"]
 resource_name = "ATK"
 length = 2.0
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,6 +22,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [27, 33]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.5, 0.84, 1.17, 1.5, 1.84),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-19, -92), Vector2(-21, -90), Vector2(-18, -90), Vector2(-16, -93), Vector2(-18, -91), Vector2(-16, -91), Vector2(-16, -94)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hat:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("eat:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_8ui7x"]
@@ -48,11 +89,24 @@ tracks/1/keys = {
 "method": &"remove"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hat:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_7iq4u"]
 resource_name = "IDLE"
 length = 1.5
 loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,6 +118,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19, 0.57, 0.94, 1.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-13, -94), Vector2(-14, -89), Vector2(-17, -88), Vector2(-14, -91), Vector2(-13, -94)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hat:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("eat:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_5fggv"]
@@ -80,11 +170,60 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hat:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hat:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13, -94)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("hat:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("eat:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_e7ejn"]
 resource_name = "WALK"
 length = 2.0
 loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -96,6 +235,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [9, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.5, 0.84, 1.17, 1.5, 1.84),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-15, -92), Vector2(-4, -97), Vector2(-6, -95), Vector2(-12, -92), Vector2(2, -100), Vector2(-23, -95), Vector2(-21, -93)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hat:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.5, 0.84, 1.17, 1.5, 1.84),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.479966, 0.479966, -0.10472, 0.445059, -0.0610865, -0.0610865]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("eat:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x7wg4"]
@@ -112,6 +287,9 @@ size = Vector2(40, 65)
 
 [node name="Zombie" instance=ExtResource("1_c3uo2")]
 velocity = Vector2(-16.6667, 0)
+script = ExtResource("2_bfjqn")
+Type = 0
+silent = false
 AniPath = NodePath("ani")
 RayDetectionPath = NodePath("RayCast2D")
 
@@ -136,3 +314,44 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, -31.5)
 shape = SubResource("RectangleShape2D_71onr")
+
+[node name="hat" type="Node2D" parent="." index="4"]
+position = Vector2(-13, -94)
+
+[node name="cube" type="Sprite2D" parent="hat" index="0"]
+visible = false
+position = Vector2(-1, -1)
+scale = Vector2(2.44444, 2.44444)
+texture = ExtResource("2_emwcy")
+hframes = 9
+vframes = 5
+frame = 39
+metadata/_edit_lock_ = true
+
+[node name="cono" type="Sprite2D" parent="hat" index="1"]
+visible = false
+position = Vector2(0, -12)
+scale = Vector2(2.44444, 2.44444)
+texture = ExtResource("2_emwcy")
+hframes = 9
+vframes = 5
+frame = 38
+metadata/_edit_lock_ = true
+
+[node name="eat" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource("4_oxmtj")
+volume_db = -5.355
+
+[node name="brains1" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("5_rxy6v")
+volume_db = -7.518
+
+[node name="brains2" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("6_clx2m")
+
+[node name="brains" type="Timer" parent="." index="8"]
+wait_time = 7.6
+autostart = true
+
+[connection signal="on_die" from="." to="." method="_on_on_die"]
+[connection signal="timeout" from="brains" to="." method="_on_brains_timeout"]

@@ -6,6 +6,8 @@ var sun = preload("res://components/drops/fall_sun.tscn")
 func _ready() -> void:
 	Game.RESET_ROOM()
 	Game.add("drops", $drops)
+	Game.add("level", self)
+	$level.play("level")
 	pass # Replace with function body.
 
 
@@ -13,6 +15,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func win():
+	$bg.stop()
+	$win.play()
+	$level_o.play("win")
+	
+	
+	pass
+
+func gameover():
+	$bg.stop()
+	$gameover.play()
+	$level_o.play("gameover")
+	
+	pass
 
 func _on_timer_timeout() -> void:
 	var start: Marker2D = $suns_fall/start
@@ -26,4 +42,15 @@ func _on_timer_timeout() -> void:
 	
 	$suns_fall.add_child(inst)
 	
+	pass # Replace with function body.
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://components/MAINMENU.tscn")
+	pass # Replace with function body.
+
+
+func _on_house_body_entered(body: Node2D) -> void:
+	if (body is Zombie) or (body is simpleZombie):
+		gameover()
 	pass # Replace with function body.

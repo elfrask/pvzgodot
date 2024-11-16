@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://v33202bkdy75"]
+
+[ext_resource type="Texture2D" uid="uid://djqf27tibl1bc" path="res://assets/img/drops/sun.png" id="1_f1pgd"]
+
+[node name="Sun" type="Sprite2D"]
+position = Vector2(231, 135)
+scale = Vector2(7.34615, 7.34615)
+texture = ExtResource("1_f1pgd")

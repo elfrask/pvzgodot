@@ -3,12 +3,17 @@
 extends CharacterBody2D
 class_name Zombie
 
+signal on_die
+
 @export_node_path("AnimationPlayer") var AniPath
 @export_node_path("RayCast2D") var RayDetectionPath
 
 @export var Healt = 1000
 @export var Damage = 100
 @export var Vel = 100
+@export var only_idle = false
+@export var killtowin = false
+
 
 var Plant
 
@@ -23,6 +28,12 @@ func hit(damge: int):
 		ani.play("DIE")
 		collision_layer = 0
 		collision_mask = 0
+		emit_signal("on_die", self)
+		
+		var level = Game.req("level")
+		if killtowin:
+			if level:
+				level.win()
 		
 	pass
 
@@ -62,7 +73,8 @@ func _process(delta: float) -> void:
 		"RESET":
 			pass
 		"IDLE":
-			ani.play("WALK")
+			if not only_idle:
+				ani.play("WALK")
 			pass
 		"WALK":
 			if RayDerection.is_colliding():

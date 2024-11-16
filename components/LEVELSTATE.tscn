@@ -1,13 +1,420 @@
-[gd_scene load_steps=7 format=3 uid="uid://b84ogenya4ldk"]
+[gd_scene load_steps=22 format=3 uid="uid://b84ogenya4ldk"]
 
 [ext_resource type="Texture2D" uid="uid://c13aqbiuti6ve" path="res://assets/img/bg/level_game.png" id="1_8huvk"]
 [ext_resource type="Script" path="res://components/levelstate.gd" id="1_v0p3y"]
 [ext_resource type="PackedScene" uid="uid://cv41bmlkr3oif" path="res://components/celda.tscn" id="2_nciep"]
-[ext_resource type="PackedScene" uid="uid://djfldwuqbmuea" path="res://components/zombies/zombie.tscn" id="3_3ndii"]
 [ext_resource type="PackedScene" uid="uid://bltu61h2emla2" path="res://components/gui_game.tscn" id="5_7odub"]
+[ext_resource type="PackedScene" uid="uid://ch8tnvvjiii1e" path="res://components/mics/zombie_spawner.tscn" id="6_3oshh"]
+[ext_resource type="AudioStream" uid="uid://bty4pjdyle1pt" path="res://assets/ost/game.ogg" id="6_pd2yb"]
+[ext_resource type="AudioStream" uid="uid://bj3lnefcpk8qi" path="res://assets/sound/win.mp3" id="8_hotsx"]
+[ext_resource type="AudioStream" uid="uid://dxg65l0626lyr" path="res://assets/sound/zoombies_are_coming.wav" id="8_viu2g"]
+[ext_resource type="AudioStream" uid="uid://bgnl6nyjs7727" path="res://assets/sound/gameover.mp3" id="9_o3ggl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3kgb"]
+bg_color = Color(0.206332, 0, 0.0013006, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asnfy"]
+bg_color = Color(0.739267, 0, 0.034493, 1)
+
+[sub_resource type="Theme" id="Theme_10se3"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_e3kgb")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_asnfy")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kidpt"]
 size = Vector2(116, 694)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sotg"]
+size = Vector2(95, 664)
+
+[sub_resource type="Animation" id="Animation_53gmi"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/pr:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/pr:value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tsjxy"]
+resource_name = "level"
+length = 200.0
+step = 1.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spawners/zs1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(18, 51, 61, 66, 128, 135, 183, 187, 192),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0, false],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [2],
+"method": &"spawn"
+}, {
+"args": [2],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spawners/zs2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(59, 63, 75, 95, 130, 182),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [2],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [2],
+"method": &"spawn"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spawners/zs3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(53, 64, 88, 126, 193, 197),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [0, true],
+"method": &"spawn"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("spawners/zs4")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(30, 47, 60, 65, 78, 110, 128, 143, 156, 179, 182),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [2],
+"method": &"spawn"
+}, {
+"args": [2],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("spawners/zs5")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(40, 56, 61, 71, 83, 94, 115, 127, 147, 163, 184, 188, 195),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [2],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [1],
+"method": &"spawn"
+}, {
+"args": [0],
+"method": &"spawn"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("start:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(15, 17.9333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/pr:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/pr:value")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(15, 199.033),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mqo56"]
+_data = {
+"RESET": SubResource("Animation_53gmi"),
+"level": SubResource("Animation_tsjxy")
+}
+
+[sub_resource type="Animation" id="Animation_v10ya"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/gameover:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/win:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/win:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/gameover:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_g6aqx"]
+resource_name = "win"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/win:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/win:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h22db"]
+resource_name = "gameover"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/gameover:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/gameover:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6kw1b"]
+_data = {
+"RESET": SubResource("Animation_v10ya"),
+"gameover": SubResource("Animation_h22db"),
+"win": SubResource("Animation_g6aqx")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_v0p3y")
@@ -19,6 +426,7 @@ texture = ExtResource("1_8huvk")
 metadata/_edit_lock_ = true
 
 [node name="Control" type="Control" parent="."]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1151.0
@@ -29,6 +437,76 @@ metadata/_edit_lock_ = true
 [node name="GUI" parent="Control" instance=ExtResource("5_7odub")]
 layout_mode = 1
 
+[node name="pr" type="ProgressBar" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 763.0
+offset_top = 16.0
+offset_right = 1104.0
+offset_bottom = 51.0
+theme = SubResource("Theme_10se3")
+show_percentage = false
+
+[node name="gameover" type="ColorRect" parent="Control"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="Control/gameover"]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 403.0
+offset_right = 748.0
+offset_bottom = 516.0
+text = "Volver"
+
+[node name="Label" type="Label" parent="Control/gameover"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 154.0
+offset_right = 860.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 51
+text = "Te han comido los cesos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="win" type="ColorRect" parent="Control"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control/win"]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 403.0
+offset_right = 748.0
+offset_bottom = 516.0
+text = "Volver"
+
+[node name="Label" type="Label" parent="Control/win"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 158.0
+offset_right = 1013.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 51
+text = "¡Felicidades! Haz ganado esta vez"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="celdas" type="Node2D" parent="."]
 
 [node name="Node2D" parent="celdas" instance=ExtResource("2_nciep")]
@@ -36,270 +514,315 @@ offset_left = 316.0
 offset_top = 138.0
 offset_right = 316.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D2" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 315.0
 offset_top = 241.0
 offset_right = 315.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D3" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 316.0
 offset_top = 350.0
 offset_right = 316.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D4" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 316.0
 offset_top = 454.0
 offset_right = 316.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D5" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 316.0
 offset_top = 559.0
 offset_right = 316.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D6" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 405.0
 offset_top = 138.0
 offset_right = 405.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D7" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 405.0
 offset_top = 241.0
 offset_right = 405.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D8" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 405.0
 offset_top = 350.0
 offset_right = 405.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D9" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 405.0
 offset_top = 454.0
 offset_right = 405.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D10" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 405.0
 offset_top = 559.0
 offset_right = 405.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D11" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 491.0
 offset_top = 138.0
 offset_right = 491.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D12" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 491.0
 offset_top = 241.0
 offset_right = 491.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D13" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 491.0
 offset_top = 350.0
 offset_right = 491.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D14" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 491.0
 offset_top = 454.0
 offset_right = 491.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D15" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 491.0
 offset_top = 559.0
 offset_right = 491.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D16" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 580.0
 offset_top = 138.0
 offset_right = 580.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D17" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 580.0
 offset_top = 241.0
 offset_right = 580.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D18" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 580.0
 offset_top = 350.0
 offset_right = 580.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D19" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 580.0
 offset_top = 454.0
 offset_right = 580.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D20" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 580.0
 offset_top = 559.0
 offset_right = 580.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D21" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 671.0
 offset_top = 138.0
 offset_right = 671.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D22" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 671.0
 offset_top = 241.0
 offset_right = 671.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D23" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 671.0
 offset_top = 350.0
 offset_right = 671.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D24" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 671.0
 offset_top = 454.0
 offset_right = 671.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D25" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 671.0
 offset_top = 559.0
 offset_right = 671.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D26" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 760.0
 offset_top = 138.0
 offset_right = 760.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D27" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 760.0
 offset_top = 241.0
 offset_right = 760.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D28" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 760.0
 offset_top = 350.0
 offset_right = 760.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D29" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 760.0
 offset_top = 454.0
 offset_right = 760.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D30" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 760.0
 offset_top = 559.0
 offset_right = 760.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D31" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 846.0
 offset_top = 138.0
 offset_right = 846.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D32" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 846.0
 offset_top = 241.0
 offset_right = 846.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D33" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 846.0
 offset_top = 350.0
 offset_right = 846.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D34" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 846.0
 offset_top = 454.0
 offset_right = 846.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D35" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 846.0
 offset_top = 559.0
 offset_right = 846.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D36" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 935.0
 offset_top = 138.0
 offset_right = 935.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D37" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 935.0
 offset_top = 241.0
 offset_right = 935.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D38" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 935.0
 offset_top = 350.0
 offset_right = 935.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D39" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 935.0
 offset_top = 454.0
 offset_right = 935.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D40" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 935.0
 offset_top = 559.0
 offset_right = 935.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D41" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 1022.0
 offset_top = 138.0
 offset_right = 1022.0
 offset_bottom = 138.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D42" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 1022.0
 offset_top = 241.0
 offset_right = 1022.0
 offset_bottom = 241.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D43" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 1022.0
 offset_top = 350.0
 offset_right = 1022.0
 offset_bottom = 350.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D44" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 1022.0
 offset_top = 454.0
 offset_right = 1022.0
 offset_bottom = 454.0
+metadata/_edit_lock_ = true
 
 [node name="Node2D45" parent="celdas" instance=ExtResource("2_nciep")]
 offset_left = 1022.0
 offset_top = 559.0
 offset_right = 1022.0
 offset_bottom = 559.0
+metadata/_edit_lock_ = true
 
 [node name="plants" type="Node2D" parent="."]
 
@@ -314,11 +837,15 @@ shape = SubResource("RectangleShape2D_kidpt")
 debug_color = Color(1, 0, 0.145098, 0.235294)
 metadata/_edit_lock_ = true
 
-[node name="enemyes" type="Node2D" parent="."]
+[node name="house" type="Area2D" parent="world_elements"]
+position = Vector2(203, 336)
 
-[node name="Zombie" parent="enemyes" instance=ExtResource("3_3ndii")]
-position = Vector2(1131, 393)
-velocity = Vector2(-40.1723, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world_elements/house"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_1sotg")
+debug_color = Color(0.868069, 5.19812e-06, 5.77569e-07, 0.419608)
+
+[node name="enemyes" type="Node2D" parent="."]
 
 [node name="drops" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -331,8 +858,57 @@ position = Vector2(277, -94)
 [node name="end" type="Marker2D" parent="suns_fall"]
 position = Vector2(1054, -94)
 
+[node name="spawners" type="Node2D" parent="."]
+
+[node name="zs1" parent="spawners" instance=ExtResource("6_3oshh")]
+position = Vector2(1211, 182)
+PatchSceneSpawn = NodePath("../../enemyes")
+
+[node name="zs2" parent="spawners" instance=ExtResource("6_3oshh")]
+position = Vector2(1211, 281)
+PatchSceneSpawn = NodePath("../../enemyes")
+
+[node name="zs3" parent="spawners" instance=ExtResource("6_3oshh")]
+position = Vector2(1211, 390)
+PatchSceneSpawn = NodePath("../../enemyes")
+
+[node name="zs4" parent="spawners" instance=ExtResource("6_3oshh")]
+position = Vector2(1211, 494)
+PatchSceneSpawn = NodePath("../../enemyes")
+
+[node name="zs5" parent="spawners" instance=ExtResource("6_3oshh")]
+position = Vector2(1211, 599)
+PatchSceneSpawn = NodePath("../../enemyes")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 15.0
 autostart = true
 
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pd2yb")
+autoplay = true
+
+[node name="start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_viu2g")
+volume_db = -5.865
+
+[node name="level" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mqo56")
+}
+
+[node name="win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_hotsx")
+
+[node name="gameover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_o3ggl")
+
+[node name="level_o" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6kw1b")
+}
+
+[connection signal="pressed" from="Control/gameover/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/win/Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="world_elements/house" to="." method="_on_house_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
