@@ -2,7 +2,7 @@ extends Control
 class_name celda
 
 @onready var touch:TextureButton = $touch
-@onready var spawn:Marker2D = $spawn
+#@onready var spawn:Marker2D = $spawn
 @onready var spawnPoint:Node2D = $spawnPoint
 
 #var lanzaguizantes: PackedScene = preload("res://components/plants/lanzaguizantes.tscn")

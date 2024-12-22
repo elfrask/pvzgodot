@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 @onready var BRAINS = [$brains1, $brains2]
 
 func _on_brains_timeout() -> void:
-	var _rs = randf_range(0, 5)
+	var _rs = randi_range(0, 5)
 	
 	if _rs == 3:
 		var _tr = randi_range(0, 1)

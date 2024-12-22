@@ -43,7 +43,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/pr:visible")
+tracks/1/path = NodePath("GUI/pr:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -55,7 +55,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/pr:value")
+tracks/2/path = NodePath("GUI/pr:value")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -274,7 +274,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Control/pr:visible")
+tracks/6/path = NodePath("GUI/pr:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -286,7 +286,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Control/pr:value")
+tracks/7/path = NodePath("GUI/pr:value")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -307,7 +307,7 @@ resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/gameover:modulate")
+tracks/0/path = NodePath("GUI/gameover:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -319,7 +319,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/win:modulate")
+tracks/1/path = NodePath("GUI/win:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -331,7 +331,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/win:visible")
+tracks/2/path = NodePath("GUI/win:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -343,7 +343,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/gameover:visible")
+tracks/3/path = NodePath("GUI/gameover:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -353,41 +353,13 @@ tracks/3/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_g6aqx"]
-resource_name = "win"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/win:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/win:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_h22db"]
 resource_name = "gameover"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/gameover:visible")
+tracks/0/path = NodePath("GUI/gameover:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -399,11 +371,39 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/gameover:modulate")
+tracks/1/path = NodePath("GUI/gameover:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g6aqx"]
+resource_name = "win"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GUI/win:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GUI/win:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -425,7 +425,7 @@ scale = Vector2(1.08833, 1.08833)
 texture = ExtResource("1_8huvk")
 metadata/_edit_lock_ = true
 
-[node name="Control" type="Control" parent="."]
+[node name="GUI" type="Control" parent="."]
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
@@ -434,10 +434,10 @@ offset_bottom = 650.0
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="GUI" parent="Control" instance=ExtResource("5_7odub")]
+[node name="GUI" parent="GUI" instance=ExtResource("5_7odub")]
 layout_mode = 1
 
-[node name="pr" type="ProgressBar" parent="Control"]
+[node name="pr" type="ProgressBar" parent="GUI"]
 visible = false
 layout_mode = 0
 offset_left = 763.0
@@ -447,7 +447,7 @@ offset_bottom = 51.0
 theme = SubResource("Theme_10se3")
 show_percentage = false
 
-[node name="gameover" type="ColorRect" parent="Control"]
+[node name="gameover" type="ColorRect" parent="GUI"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -458,7 +458,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Button" type="Button" parent="Control/gameover"]
+[node name="Button" type="Button" parent="GUI/gameover"]
 layout_mode = 0
 offset_left = 403.0
 offset_top = 403.0
@@ -466,7 +466,7 @@ offset_right = 748.0
 offset_bottom = 516.0
 text = "Volver"
 
-[node name="Label" type="Label" parent="Control/gameover"]
+[node name="Label" type="Label" parent="GUI/gameover"]
 layout_mode = 0
 offset_left = 266.0
 offset_top = 154.0
@@ -477,7 +477,7 @@ text = "Te han comido los cesos"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="win" type="ColorRect" parent="Control"]
+[node name="win" type="ColorRect" parent="GUI"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -487,7 +487,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Control/win"]
+[node name="Button" type="Button" parent="GUI/win"]
 layout_mode = 0
 offset_left = 403.0
 offset_top = 403.0
@@ -495,7 +495,7 @@ offset_right = 748.0
 offset_bottom = 516.0
 text = "Volver"
 
-[node name="Label" type="Label" parent="Control/win"]
+[node name="Label" type="Label" parent="GUI/win"]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 158.0
@@ -908,7 +908,7 @@ libraries = {
 "": SubResource("AnimationLibrary_6kw1b")
 }
 
-[connection signal="pressed" from="Control/gameover/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/win/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="GUI/gameover/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="GUI/win/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="world_elements/house" to="." method="_on_house_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

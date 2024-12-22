@@ -17,6 +17,7 @@ vframes = 2
 frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_tqvpk")
 disabled = true
 
